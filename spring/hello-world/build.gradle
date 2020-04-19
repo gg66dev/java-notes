@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+	jarLibs
+}
+
+dependencies {
+	compile  'org.springframework:spring-context:4.0.2.RELEASE'
+	jarLibs  'org.springframework:spring-context:4.0.2.RELEASE'
+}
+
+
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'ggp.KnightMain'
+    )
+  }
+  def libBuildDir = mkdir "${buildDir}/resources/main/lib"
+	copy {
+		from { configurations.jarLibs }
+		into { libBuildDir }
+	}
+}
