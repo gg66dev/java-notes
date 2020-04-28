@@ -1,9 +1,9 @@
-package ggp;
+package ggp.helloworld.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import ggp.knights.*;
+import ggp.helloworld.knights.*;
 
 @Configuration
 public class KnightConfig {

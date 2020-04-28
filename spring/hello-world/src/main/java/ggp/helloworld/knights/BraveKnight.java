@@ -1,4 +1,4 @@
-package ggp.knights;
+package ggp.helloworld.knights;
 
 public class BraveKnight implements Knight {
 

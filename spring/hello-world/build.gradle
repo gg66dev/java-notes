@@ -1,30 +1,24 @@
-apply plugin: 'java'
-
-repositories {
-    mavenLocal()
-    mavenCentral()
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
 }
 
-configurations {
-	jarLibs
+group = 'ggp'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
 }
 
 dependencies {
-	compile  'org.springframework:spring-context:4.0.2.RELEASE'
-	jarLibs  'org.springframework:spring-context:4.0.2.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
-
-jar {
-  manifest {
-    attributes(
-      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'ggp.KnightMain'
-    )
-  }
-  def libBuildDir = mkdir "${buildDir}/resources/main/lib"
-	copy {
-		from { configurations.jarLibs }
-		into { libBuildDir }
-	}
+test {
+	useJUnitPlatform()
 }
