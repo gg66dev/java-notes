@@ -1,0 +1,26 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+	jarLibs
+}
+
+dependencies {
+	compile  'org.springframework:spring-context:4.0.2.RELEASE'
+	jarLibs  'org.springframework:spring-context:4.0.2.RELEASE'
+}
+
+jar {
+    manifest {
+        attributes(
+          'Main-Class': 'ggp.KnightMain'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+ }
