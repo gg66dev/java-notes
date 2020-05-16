@@ -18,12 +18,19 @@ Visual Studio Code
 ## Plugins
 
 * Java Language Support.
+* Java Code Generators
 * Gradle Language Support.
 * Gradle Task
 
 
-Basics
+Commands
 ==========
+
+* create project
+
+```
+gradle init
+```
 
 * compile
 
@@ -39,6 +46,10 @@ gradle clean
 
 * final jar in directory: `build\libs\`
 
+* run test (and display info)
 
+```
+gradle test -i
+```
 
 
